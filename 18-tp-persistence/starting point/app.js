@@ -22,11 +22,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
 app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 
+
+
 // serve any other static files
 app.use(express.static(path.join(__dirname, '/public')));
 
 // serve dynamic routes
 app.use(require('./routes'));
+app.use('/api', require('./routes/api/attractions'));
+app.use('/api/days', require('./routes/api/days'));
 
 // failed to catch req above means 404, forward to error handler
 app.use(function (req, res, next) {

@@ -8,7 +8,7 @@
  * that attraction's id. Selecting an option looks up the attraction by id,
  * then tells the trip module to add the attraction.
  */
-
+var hotels;
 $(function(){
 
   // jQuery selects
@@ -17,10 +17,35 @@ $(function(){
   var $restaurantSelect = $optionsPanel.find('#restaurant-choices');
   var $activitySelect = $optionsPanel.find('#activity-choices');
 
-  // make all the option tags (second arg of `forEach` is a `this` binding)
+  // $.get('/api/hotels').
+  // then(function(hotels){
+  //   hotels.forEach(makeOption, $hotelSelect);
+  // })
+  // .catch(console.log);
+  hotels = $.get('/api/hotels').
+  then(function(hotels){
+    return hotels;
+  })
+  .catch(console.log);
+
   hotels.forEach(makeOption, $hotelSelect);
-  restaurants.forEach(makeOption, $restaurantSelect);
-  activities.forEach(makeOption, $activitySelect);
+
+  $.get('/api/restaurants')
+   .then(function(restaurants){
+      restaurants.forEach(makeOption, $restaurantSelect);
+   })
+   .catch(console.log);
+
+    $.get('/api/activities')
+    .then(function(activities){
+      activities.forEach(makeOption, $activitySelect);
+   })
+   .catch(console.log);
+
+  // make all the option tags (second arg of `forEach` is a `this` binding)
+  // hotels.forEach(makeOption, $hotelSelect);
+  // restaurants.forEach(makeOption, $restaurantSelect);
+  // activities.forEach(makeOption, $activitySelect);
 
   function makeOption (databaseAttraction) {
     var $option = $('<option></option>') // makes a new option tag

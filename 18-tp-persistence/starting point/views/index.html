@@ -81,11 +81,35 @@
     </div>
   </div>
 </div>
+<script src="/jquery/jquery.min.js"></script>
 <script>
+// var hotels;
+// var restaurants;
+// var activities;
+
+// var hotelsPromise = $.get('/api/hotels');
+
+//  var restPromise =$.get('/api/restaurants');
+
+//   var actPromise = $.get('/api/activities'); 
+
+//   Promise.all([hotelsPromise, restPromise, actPromise])
+//     .spread(function(hotels, restaurants, activities){
+//       console.log(hotels);
+//         // hotels = allPromises[0];
+//         // restaurants = allPromises[1];
+//         // activities = allPromises[2];
+//         console.log("Finished data grab");
+//     })
+//     .catch(console.log);
+
+</script>
+
+<!-- <script>
   {% autoescape false %}
   var hotels = {{ templateHotels | json }};
   var restaurants = {{ templateRestaurants | json }};
   var activities = {{ templateActivities | json }};
   {% endautoescape %}
-</script>
+</script> -->
 {% endblock %}
